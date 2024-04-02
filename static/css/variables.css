@@ -1,0 +1,108 @@
+body {
+  --bg-color: #ffffff; 
+  --text-color: #3C4043;
+  --text-color-lighter: #3C4043;
+  --primary-color: #5871a2;
+  --primary-color-hover: #5871a2;
+  --primary-pale-color: #e7e7e7;
+  --secondary-pale-color: #f3f3f3;
+  --text-pale-color: #94969f;
+  --text-pale-color-lighter: #ddd;
+  --top-buttons-color: var(--text-color);
+  --top-buttons-color-hover: var(--primary-color);
+  --menu-color: var(--text-pale-color);
+  --menu-color-hover: var(--primary-color);
+  --tags-color: var(--primary-color);
+  --tags-color-hover: var(--primary-color);
+}
+
+body.dark {
+  --bg: #202124;
+  --fg: #9197a5;
+  --fg0: var(--fg);
+  --fg4: #747983;
+
+  --bg-color: var(--bg);
+  --text-color: var(--fg);
+  --text-color-lighter: var(--fg0);
+
+  --primary-color: #5d77ac;
+  --primary-color-hover: var(--primary-color);
+
+  --top-buttons-color: var(--text-color);
+  --top-buttons-color-hover: var(--primary-color);
+
+  --menu-color: var(--fg4);
+  --menu-color-hover: var(--primary-color);
+
+  --tags-color: var(--primary-color);
+  --tags-color-hover: var(--primary-color);
+
+  --primary-pale-color: #5d77ac14;
+  --secondary-pale-color: #5d77ac20;
+  --text-pale-color: var(--fg4);
+
+  --text-pale-color-lighter: #414141;
+
+}
+
+body.gruv {
+  --bg: #282828;
+  --bg0_h: #1d2021;
+  --bg0: var(--bg);
+  --bg1: #3c3836;
+  --fg0: #fbf1c7;
+  --fg: #ebdbb2;
+  --fg4: #a89984;
+  --blue: #076678;
+  --light-blue: #458588;
+  --aqua: #427b58;
+  --light-aqua: #689d6a;
+  --green: #98971a;
+  --light-green: #b8bb26;
+  --purple: #b16286;
+  --light-purple: #d3869b;
+  --red: #cc241d;
+  --light-red: #fb4934;
+  --orange: #d65d0e;
+  --light-orange: #fe8019;
+  --yellow: #d79921;
+  --light-yellow: #fabd2f;
+  --gray: var(--fg4);
+  --light-gray: #928374;
+
+  --bg-color: var(--bg);
+  --text-color: var(--fg);
+  --text-color-lighter: var(--fg0);
+
+  --menu-color: var(--fg4);
+  --menu-color-hover: var(--fg0);
+
+  --top-buttons-color: var(--text-color);
+  --top-buttons-color-hover: var(--light-yellow);
+
+  --primary-color: var(--green);
+  --primary-color-hover: var(--green);
+
+  --tags-color: var(--green);
+  --tags-color-hover: var(--green);
+
+  --primary-pale-color: var(--bg1);
+  --text-pale-color: var(--light-gray);
+
+  --text-pale-color-lighter: #414141;
+}
+
+body {
+  --main-font: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  --paragraph-line-height: 1.75;
+  --img-border-radius: 0px;
+  --block-code-border-radius: 0px;
+  --code-font: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  --main-max-width: 768px;
+  --header-margin-top: 2em;
+  --block-code-border-color: var(--primary-color);
+  --icon-size: 24px;
+  --inline-code-border-radius: 5px;
+  --inline-code-bg-color: var(--primary-pale-color);
+}

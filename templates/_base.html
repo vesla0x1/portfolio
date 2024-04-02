@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="color-scheme" content="light dark">
+    <title>{% block title %}{% endblock title %} | {{ config.title }}</title>
+    <link rel="stylesheet" href="/css/variables.css">
+    <link rel="stylesheet" href="/main.css">
+    {% block head %}{% endblock head %}
+  </head>
+
+  <body class="{% block page %}{% endblock page%}">
+    <script>
+      const theme = sessionStorage.getItem('theme');
+      const match = window.matchMedia("(prefers-color-scheme: dark)").matches
+      if ((theme && theme == 'dark') || (!theme && match)) {
+        document.body.classList.add('dark');
+      }
+    </script>
+    {% block content %}{% endblock content %}
+    <script src="/js/main.js"></script>
+    {% block script %}{% endblock script %}
+  </body>
+</html>

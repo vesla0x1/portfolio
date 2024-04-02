@@ -1,0 +1,75 @@
+{% extends "_base_article_content.html" %}
+{% block page %}audits-page{% endblock page%}
+{% block title %}{{ section.title }}{% endblock title %}
+
+{% block article_content %}
+{% set_global total_payment = 0 %}
+{% set_global total_nsloc = 0 %}
+{% set_global total_low = 0 %}
+{% set_global total_medium = 0 %}
+{% set_global total_high = 0 %}
+
+<h1>Audit reports</h1>
+
+{% for audit in section.pages | sort(attribute="date") | reverse %}
+<div class="table-wrapper">
+  <table>
+    <thead>
+      <tr>
+      <td>Title</td>
+      <td>Findings</td>
+      <td>nSLOC</td>
+      <td>Payout</td>
+      <td>Category</td>
+      <td>Ranking</td>
+      <td>Date</td>
+      </tr>
+    </thead>
+    <tr>
+      <td><a href="{{ audit.permalink }}">{{ audit.title }}</a></td>
+      <td>{{ audit.extra.findings }}</td>
+      <td>{{ audit.extra.nsloc }}</td>
+      <td>${{ audit.extra.payment }}</td>
+      <td>{{ audit.extra.protocol_category }}</td>
+      <td><a href="{{ audit.extra.ranking_link }}" target="_blank">#{{ audit.extra.ranking_position }}</a> of {{ audit.extra.participants }} </td> 
+      <td>{{ audit.date | date(format="%h, %y") }}</td>
+    </tr>
+
+    {% set_global total_payment = total_payment + audit.extra.payment %}
+    {% set_global total_nsloc = total_nsloc + audit.extra.nsloc %}
+    {% set findings = audit.extra.findings | split(pat=",") %}
+    {% for finding in findings %}
+      {% set ch = finding | reverse | truncate(length=1, end="") %}
+      {% set val = finding | truncate(length=finding | length - 1, end="") | int %}
+      {% if ch == "L" %}
+        {% set_global total_low = total_low + val %}
+      {% elif ch == "M" %}
+        {% set_global total_medium = total_medium + val %}
+      {% elif ch == "H" %}
+        {% set_global total_high = total_high + val %}
+      {% endif %}
+    {% endfor %}
+
+    <tr>
+      <td><b>Overall</b></td>
+      <td>
+        {% if total_low > 0 %}
+          {{ total_low }}L{% if total_medium > 0 or total_high > 0 %},{% endif %}
+        {% endif %}
+        {% if total_medium > 0 %}
+          {{ total_medium }}M{% if total_high > 0 %},{% endif %}
+        {% endif %}
+        {% if total_high > 0 %}
+          {{ total_high }}H
+        {% endif %}
+      </td>
+      <td>{{ total_nsloc }}</td>
+      <td>${{ total_payment }}</td>
+      <td>-</td>
+      <td>-</td>
+      <td>-</td>
+    </tr>
+  </table>
+</div>
+{% endfor %}
+{% endblock article_content %}

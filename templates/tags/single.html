@@ -1,0 +1,16 @@
+{% extends "_base_article_content.html" %}
+{% block page %}tag-single{% endblock page %}
+{% block title %}#{{term.name}}{% endblock title %}
+
+{% block article_content %}
+  <div class="title-wrapper">
+    <h1>#{{ term.name }}</h1>
+    <span><a href="/tags">All tags</a></span>
+  </div>
+  {% if paginator %}
+  {% set pages = paginator.pages %}
+  {% else %}
+  {% set pages = term.pages %}
+  {% endif %}
+  {% include "_page_list.html" %}
+{% endblock article_content %}

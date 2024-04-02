@@ -1,0 +1,58 @@
+<div class="pages-list">
+    <ul>
+    {% for page in pages  | sort(attribute="date") | reverse %}
+    <li>
+    <a 
+        {% if page.extra.link %}
+        href="{{ page.extra.link }}" target="_blank"
+        {% else %}
+        href="{{ page.permalink }}"
+        {% endif %}>
+        {% if display_home_feed_label and page.extra.home_feed_label %}
+            [{{ page.extra.home_feed_label }}] -
+        {% endif %}
+        {{ page.title }}
+    </a>
+    {%if display_page_subtitle and page.extra.subtitle %}
+    - {{ page.extra.subtitle | markdown | safe }}
+    {% endif %}    
+    <div class="details">
+        <span class="date">{{ page.date | date(format="%x") }}</span>
+        {% if page.description %}
+            <span class="description"> - {{ page.description | markdown | safe }}</span>
+        {% endif %}
+        {% if page.taxonomies.tags %}
+        <div class="tags">
+            {% for tag in page.taxonomies.tags %}
+            {% set url = get_taxonomy_url(kind="tags", name=tag) %}
+            <span class="tag"><a href="{{ url }}">#{{ tag | lower }}</a></span>
+            {% endfor %}
+        </div>
+        {% endif %}
+    </div>
+    </li>
+    {% endfor %}
+    </ul>
+
+    {% if paginator and paginator.number_pagers > 1 %}
+    <div class="paginator">
+        {% if paginator.current_index > 1 %}
+            <a href={{paginator.previous}} id="prev">
+                {% set icon_path = "static/icon/arrow_left.svg" %}
+                {% set icon = load_data(path=icon_path) %}
+                {{ icon | safe }}
+            </a>
+        {% endif %}
+
+        Page {{ paginator.current_index }} of {{ paginator.number_pagers }}
+
+        {% if paginator.current_index + 1 <= paginator.number_pagers %}
+            <a href={{paginator.next}} id="next">
+                {% set icon_path = "static/icon/arrow_right.svg" %}
+                {% set icon = load_data(path=icon_path) %}
+                {{ icon | safe }}
+            </a>
+        {% endif %}
+    </div>
+    {% endif %}
+</div>

@@ -1,0 +1,130 @@
+{% extends "_base_article_content.html" %}
+{% block page %}audit-report-page article{% endblock page %}
+{% block title %}{{ page.title }}{% endblock title %}
+
+{% block head %}
+
+{% if page.extra.math %}
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css" integrity="sha384-n8MVd4RsNIU0tAv4ct0nTaAbDJwPJzDEaqSD1odI+WdtXRGWt2kTvGFasHpSy3SV" crossorigin="anonymous">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js" integrity="sha384-XjKyOOlGwcjNTAIQHIpgOno0Hl1YQqzUOEleOLALmuqehneUG+vnGctmUb0ZY0l8" crossorigin="anonymous"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js" integrity="sha384-+VBxd3r6XgURycqtZ117nYw44OOcIax56Z4dCRWbxyPt0Koah1uHoK0o4+/RRE05" crossorigin="anonymous"></script>
+  <script src="/js/render-math.js"></script>
+{% endif %}
+
+{% endblock head %}
+
+{% macro elapsed(begin, end) -%}
+    {% set begin = begin | date(format="%s") | int %}
+    {%- set end = end | date(format="%s") | int -%}
+    {{ (end - begin) / (3600 * 24) }} days
+{%- endmacro elapsed %}
+
+{% block article_content %}
+<h1>{{ page.title }} - Audit Report</h1>
+<div id="post-info">
+  <div id="date">
+    <span id="publish">From {{ page.extra.start | date(format="%x") }} to
+        {{ page.extra.finish | date(format="%x") }} - ({{ self::elapsed(begin=page.extra.start, end=page.extra.finish) }})
+        on {{ page.extra.platform }}</span>
+    {% if page.updated and page.updated != page.date %}
+    <span>Updated on <span id="updated">{{ page.updated | date(format="%x") }}</span></span>
+    {% endif %}
+  </div>
+
+  {% if page.extra.display_tags is defined %}{% set display_tags = page.extra.display_tags %}{% elif config.extra.display_tags is defined %}{% set display_tags = config.extra.display_tags %}{% else %}{% set display_tags = true %}{% endif %}
+
+  {% if page.taxonomies.tags is defined and display_tags == true %}
+  <div id="tags">
+    {% for tag in page.taxonomies.tags -%}
+    {% set tag_slugify = tag | slugify -%}
+    <a class="instant" href="{{ config.base_url ~ '/tags/' ~ tag_slugify }}"><span>#</span>{{ tag }}</a>
+    {%- endfor %}
+  </div>
+  {% endif %}
+</div>
+<section class="overview">
+    <h1>Overview</h1>
+    {{ page.extra.overview | markdown | safe }}
+
+    <div class="references">
+        <h2>References</h2>
+        <ul>
+        {% for ref in page.extra.references %}
+        <li><a href="{{ ref.url }}" target="_blank">{{ ref.name }}</a></li>
+        {% endfor %}
+        </ul>
+    </div>
+
+    <div class="contest">
+        <h2>Infos</h2>
+        <div class="table-wrapper">
+        <table>
+            <thead>
+            <td>Details</td>
+            <td>Findings</td>
+            <td>nSLOC</td>
+            <td>Payout</td>
+            <td>Platform</td>
+            <td>Category</td>
+            </thead>
+            <tbody>
+            <tr>
+                <td><a href="{{ page.extra.audit_link }}" target="_blank">{{ page.title }}</a></td>
+                <td>{{ page.extra.findings}}</td>
+                <td>{{ page.extra.nsloc }}</td>
+                <td>${{ page.extra.payment }}</td>
+                <td>{{ page.extra.platform }}</td>
+                <td>{{ page.extra.protocol_category }}</td>
+            </tr>
+            </tbody>
+        </table>
+        <table>
+            <thead>
+                <td>Ranking</td>
+                <td>Start</td>
+                <td>End</td>
+                <td>Duration</td>
+                <td>Report</td>
+            </thead>
+            <tbody>
+                <td><a href="{{ page.extra.ranking_link }}" target="_blank">#{{ page.extra.ranking_position }}</a> of {{ page.extra.participants }}</td>
+                <td>{{ page.extra.start | date(format="%x") }}</td>
+                <td>{{ page.extra.finish | date(format="%x") }}</td>
+                <td>{{ self::elapsed(begin=page.extra.start, end=page.extra.finish) }}</td>
+                <td><a href="{{ page.extra.report }}" target="_blank">📄</a></td>
+            </tbody>
+        </table>
+
+        </div>
+    </div>
+
+    <div class="findings">
+    <h2>Findings</h2>
+    <div class="table-wrapper">
+    <table>
+        <thead>
+            <td>Id</td>
+            <td>Severity</td>
+            <td>Payment</td>
+            <td>Dups</td>
+            <td>Report</td>
+        </thead>
+        <tbody>
+            <tr>
+            {% for finding in page.extra.findings_data %}
+                <td><a href="#{{ finding.id }}">{{ finding.id }}</a></td>
+                <td>{{ finding.severity }}</td>
+                <td>${{ finding.payment }}</td>
+                <td>{{ finding.duplicates }}</td>
+                <td><a href="{{ finding.original_report }}" target="_blank">📄</a></td>
+            {% endfor %}
+            </tr>
+        </tbody>
+    </table>
+    </div>
+    </div>
+</section>
+<section class="report">
+{{ page.content | safe }}
+</section>
+{% endblock article_content %}

@@ -1,0 +1,24 @@
+{% set_global subdir = get_url(path="") %}
+{% if section %}
+    {% set_global components = section.components %}
+{% elif page %}
+    {% set_global components = page.components %}
+{% elif term %}
+    {% set_global components = term.path | trim_end_matches(pat="/")
+        | split(pat="/") | slice(start=1) %}
+{% else %}
+    {% set_global components = ["tags"] %}
+{% endif %}
+
+<div class="breadcrumb">
+    <span class="prompt">> </span><a href="/">home</a>
+    {% for dir in components %}
+        {% set_global subdir = subdir ~ "/" ~ dir %}
+        <span class="separator">/</span>
+        {% if not loop.last %}
+            <a href="{{ subdir }}">{{ dir }}</a>
+        {% else %}
+            <span class="leaf">{% if term %}#{% endif %}{{ dir }}</span>
+        {% endif %}
+    {% endfor %}
+</div>

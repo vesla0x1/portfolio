@@ -1,0 +1,19 @@
+{% extends "_base_article_content.html" %}
+{% block page %}pages-list{% endblock page%}
+{% block title %}{{ section.title }}{% endblock title %}
+
+{% block article_content %}
+  {% set pages = section.pages | sort(attribute="date") | reverse %}
+    {% set display_page_subtitle = true %}
+    {% if section.extra.categorized %}
+      {% for category, pages in pages | group_by(attribute="extra.category") %}
+        <section>
+        <h1>{{ category }}</h1>
+        {% include "_page_list.html" %}
+        </section>
+      {% endfor %}
+    {% else %}
+      <h1>{{ section.title }}</h1>
+      {% include "_page_list.html" %}
+    {% endif %}
+{% endblock article_content %}

@@ -1,0 +1,20 @@
+<header>
+  <div class="wrapper">
+    <div class="top-wrapper">
+      <span id="name"><a href="/">{{ config.title }}</a></span>
+
+      <div id="top-buttons">
+        {% set moon_icon = load_data(path="static/icon/moon.svg") %}
+        {% set sun_icon = load_data(path="static/icon/sun.svg") %}
+        <button id="theme-toggle" aria-label="theme switch" data-moon-icon="{{ moon_icon }}" data-sun-icon="{{ sun_icon }}">
+          {{ moon_icon | safe }}
+        </button>
+      </div>
+    </div>
+    <nav>
+      {% for section in config.extra.sections %}
+      <a href="{{ section.path }}" {% if section.is_external %}target="_blank" rel='noreferrer noopener'{% endif %}>{{ section.name }}</a>
+      {% endfor %}
+    </nav>
+  </div>
+</header>

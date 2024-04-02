@@ -1,0 +1,13 @@
+{% extends "_base_article_content.html" %}
+{% block title %}Home{% endblock title %}
+
+{% block article_content %}
+<h1>Recent updates</h1>
+<div id="recent-updates"></div>
+{% endblock article_content %}
+
+{% block script %}
+<script>
+  loadRecent(1);
+</script>
+{% endblock script %}

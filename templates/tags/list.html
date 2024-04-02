@@ -1,0 +1,29 @@
+{% extends "_base_article_content.html" %}
+
+{% block page %}tag-list{% endblock page%}
+{% block title %}Tags{% endblock title %}
+
+{% block article_content %}
+{% set count = terms | map(attribute="page_count") | sort | reverse %}
+{% set scale = 5 %}
+{% set min_font_size = 0.85 %}
+{% set max_font_size = 3 %}
+
+
+<div class="title">Tags</div>
+<div class="tags">
+  {% for tag in terms -%}
+    {% set font_size = tag.page_count / count.0 * scale %}
+
+    {% if font_size < min_font_size %}
+      {% set font_size = min_font_size %}
+    {% elif font_size > max_font_size %}
+      {% set font_size = max_font_size %}
+    {% endif %}
+
+    {% set font_size_str = "font-size: " ~ font_size ~ "em" %}
+    <a class="instant" href="{{ tag.permalink }}">#{{ tag.name | lower }}</a>
+  {% endfor %}
+</div>
+
+{% endblock article_content %}
