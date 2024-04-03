@@ -7,7 +7,6 @@ template = "article.html"
 
 [taxonomies]
 tags = ["coding", "solidity", "foundry", "defi hacks"]
-home = ["recent"]
 
 [extra]
 category = "Personal projects"

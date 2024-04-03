@@ -4,10 +4,10 @@ description = "Smart contract functions implemented in **Move**"
 draft = false
 template = "article.html"
 date = "2024-01-11"
+path = "home/coding/sui-marketplace"
 
 [taxonomies]
 tags = ["challenge", "coding", "Move", "overmind"]
-home = ["recent"]
 
 [extra]
 category = "Challenges"

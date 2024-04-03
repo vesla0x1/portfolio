@@ -5,7 +5,6 @@ description = "The Flat Money protocol allows people to deposit Rocket Pool ETH 
 
 [taxonomies]
 tags = ["Audit Report", "Sherlock"]
-home = ["recent"]
 
 [extra]
 platform = "Sherlock"

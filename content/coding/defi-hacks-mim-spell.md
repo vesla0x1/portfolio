@@ -8,7 +8,6 @@ path = "coding/defi-hacks/mim-spell"
 
 [taxonomies]
 tags = ["solidity", "DeFi Hacks", "coding"]
-home = ["recent"]
 
 [extra]
 home_feed_label = "Feat/DeFi Hacks"

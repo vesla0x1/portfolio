@@ -13,22 +13,4 @@ function enableThemeToggle() {
   if (sessionStorage.getItem("theme") == "dark") toggleTheme("dark");
 }
 
-async function loadRecent(page) {
-  const html = (await (await fetch(`/home/recent/${page === 1 ? '' : page}`)).text());
-  const doc = new DOMParser().parseFromString(html, 'text/html');
-  document.getElementById('recent-updates').innerHTML = doc.body.innerHTML;
-
-  const next = document.getElementById('next');
-  if (next) {
-    next.addEventListener('click', e => e.preventDefault())
-    next.onclick = () => { loadRecent(page + 1) }
-  }
-
-  const prev = document.getElementById('prev');
-  if (prev) {
-    prev.addEventListener('click', e => e.preventDefault())
-    prev.onclick = () => { loadRecent(page - 1) };
-  }
-}
-
 enableThemeToggle();

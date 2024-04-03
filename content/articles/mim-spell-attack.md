@@ -7,7 +7,6 @@ draft = false
 
 [taxonomies]
 tags = ["DeFi hacks", "solidity"]
-home = ["recent"]
 
 [extra]
 math = true

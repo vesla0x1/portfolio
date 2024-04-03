@@ -5,7 +5,6 @@ date = "2024-02-09"
 
 [taxonomies]
 tags = ["achievement", "audit contest", "Sherlock"]
-home = ["recent"]
 
 [extra]
 subtitle = "**Ranked 31/257**"

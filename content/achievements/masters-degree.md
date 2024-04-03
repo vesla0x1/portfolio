@@ -6,7 +6,6 @@ template = "404.html"
 
 [taxonomies]
 tags = ["achievement", "certification"]
-home = ["recent"]
 
 [extra]
 category = "Certificates"

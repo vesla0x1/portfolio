@@ -3,11 +3,7 @@
 
 {% block article_content %}
 <h1>Recent updates</h1>
-<div id="recent-updates"></div>
+{% set pages = paginator.pages %}
+{% set display_home_feed_label = true %}
+{% include "_page_list.html" %}
 {% endblock article_content %}
-
-{% block script %}
-<script>
-  loadRecent(1);
-</script>
-{% endblock script %}
