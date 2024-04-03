@@ -13,35 +13,6 @@ function enableThemeToggle() {
   if (sessionStorage.getItem("theme") == "dark") toggleTheme("dark");
 }
 
-function enableRssMask() {
-  const rssBtn = document.querySelector('#rss-btn');
-  const mask = document.querySelector('#rss-mask');
-  const copyBtn = document.querySelector('#rss-mask button');
-  if (!rssBtn || !mask) return;
-  rssBtn.addEventListener('click', (e) => {
-    e.preventDefault();
-    mask.showModal();
-  });
-  const close = (e) => {
-    if (e.target == mask) mask.close();
-  };
-  mask.addEventListener('click', close);
-  const copy = () => {
-    navigator.clipboard.writeText(copyBtn.dataset.link).then(() => {
-      copyBtn.innerHTML = copyBtn.dataset.checkIcon;
-      copyBtn.classList.add('copied');
-      copyBtn.removeEventListener('click', copy);
-      setTimeout(() => {
-        mask.close();
-        copyBtn.innerHTML = copyBtn.dataset.copyIcon;
-        copyBtn.classList.remove('copied');
-        copyBtn.addEventListener('click', copy);
-      }, 400);
-    });
-  }
-  copyBtn.addEventListener('click', copy);
-}
-
 async function loadRecent(page) {
   const html = (await (await fetch(`/home/recent/${page === 1 ? '' : page}`)).text());
   const doc = new DOMParser().parseFromString(html, 'text/html');
@@ -61,4 +32,3 @@ async function loadRecent(page) {
 }
 
 enableThemeToggle();
-enableRssMask();
