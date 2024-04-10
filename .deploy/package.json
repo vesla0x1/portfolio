@@ -1,0 +1,6 @@
+{
+  "type": "module",
+  "dependencies": {
+    "kubo-rpc-client": "^3.0.4"
+  }
+}
