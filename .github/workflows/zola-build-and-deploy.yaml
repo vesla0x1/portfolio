@@ -1,0 +1,44 @@
+name: Build zola portfolio and publish it on IPFS
+run-name: Build zola portfolio and publish it on IPFS
+on: push
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment: production
+    steps:
+      - name: Check out repository code
+        uses: actions/checkout@v4
+
+      - name: Install Zola
+        uses: taiki-e/install-action@v2
+        with:
+          tool: zola@0.17.1
+
+      - name: Building zola project
+        run: zola build --output-dir .deploy/${{ vars.OUT_DIR_NAME }}
+
+      - name: Install node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 18
+
+      - name: making all relative
+        run: |
+          cd .deploy/${{ vars.OUT_DIR_NAME }}
+          npx all-relative
+
+      - name: Deploy on IPFS
+        run: |
+          cd .deploy && npm install .
+          node ipfs_deploy.js \
+            ${{ secrets.IPFS_RPC_API_SECRET }} \
+            ${{ vars.IPFS_RPC_API_URL }} \
+            ${{ vars.IPFS_RPC_API_NAME_KEY }} \
+            ${{ vars.OUT_DIR_NAME }}
+
+      - name: Update pinned versions on Pinata
+        run: |
+          node .deploy/pinata_update_pinned.js \
+            ${{ secrets.PINATA_API_KEY }} \
+            ${{ vars.OUT_DIR_NAME }} \
+            ${{ env.cid_to_pin }}
