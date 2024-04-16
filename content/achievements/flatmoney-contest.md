@@ -11,3 +11,5 @@ subtitle = "**Ranked 31/257**"
 category = "Web3 Achievements"
 home_feed_label = "Achievement"
 +++
+
+## Sorry! I haven't finished writing this page yet...

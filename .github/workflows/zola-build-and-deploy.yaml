@@ -1,10 +1,13 @@
 name: Build zola portfolio and publish it on IPFS
 run-name: Build zola portfolio and publish it on IPFS
-on: push
+on:
+  push:
+    branches:
+      - master
 jobs:
   deploy:
     runs-on: ubuntu-latest
-    environment: production
+    environment: public
     steps:
       - name: Check out repository code
         uses: actions/checkout@v4

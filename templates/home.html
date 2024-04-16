@@ -1,7 +1,11 @@
 {% extends "_base_article_content.html" %}
+{% block page %}home-page{% endblock page %}
 {% block title %}Home{% endblock title %}
 
 {% block article_content %}
+<div class="intro">
+  {{ section.content | safe }}
+</div>
 <h1>Recent updates</h1>
 {% set pages = paginator.pages %}
 {% set display_home_feed_label = true %}

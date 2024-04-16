@@ -12,9 +12,9 @@ category = "Web3 Achievements"
 home_feed_label = "Achievement"
 +++
 
-## Overview
-{{ figure(src="/images/ethernaut-challenges.png" , caption="I have worked on three challenges: start.exe, Wombo Combo and Alien Spaceship.") }}
+{{ figure(src="/images/ethernaut-challenges.png", caption="" ) }}
 
+## Sorry! I haven't finished writing this page yet...
 {{ figure(src="/images/ethernaut-ctf-overview.png" , caption="Ranked 62/828") }}
 
 

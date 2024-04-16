@@ -13,6 +13,7 @@ body {
   padding: 0 20px;
   @media (max-width: 440px) {
     font-size: 1.15em; 
+    text-align: start;
   }
 }
 
@@ -358,6 +359,31 @@ pre {
   }
 }
 
+body.home-page {
+  .intro {
+    margin-bottom: 2em;
+    margin-top: 1em;
+    border-bottom: 1px solid var(--text-pale-color-lighter);
+
+    p {
+      line-height: normal;
+      font-size: 1.2em;
+      margin-top: 0em;
+    }
+  }
+}
+
+body.prose-page {
+  h2 {
+    margin-bottom: 0.3em;
+    margin-top: 1.6em;
+  }
+
+  p {
+    margin-top: 0;
+  }
+}
+
 body.audit-report-page {
   section {
     padding-left: 0.5em;
@@ -580,6 +606,7 @@ header {
         gap: 0em 1em;
         font-size: 0.9em;
         margin-bottom: 2em;
+        justify-content: space-evenly;
       }
     }
   }
