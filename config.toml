@@ -41,6 +41,7 @@ sections = [
     { name = "coding", path = "/coding" },
     { name = "achievements", path = "/achievements" },
     { name = "about", path = "/about" },
+    { name = "contacts", path = "/contacts" },
     { name = "tags", path = "/tags" },
 ]
 
