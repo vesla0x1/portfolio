@@ -9,11 +9,10 @@ body {
   font-family: var(--main-font);
   background-color: var(--bg-color);
   color: var(--text-color);
-  text-align: justify;
+  hyphens: auto;
   padding: 0 20px;
   @media (max-width: 440px) {
     font-size: 1.15em; 
-    text-align: start;
   }
 }
 
