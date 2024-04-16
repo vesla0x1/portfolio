@@ -13,6 +13,7 @@ body {
   padding: 0 20px;
   @media (max-width: 440px) {
     font-size: 1.15em; 
+    text-align: start;
   }
 }
 
@@ -605,6 +606,7 @@ header {
         gap: 0em 1em;
         font-size: 0.9em;
         margin-bottom: 2em;
+        justify-content: space-evenly;
       }
     }
   }
