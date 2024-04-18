@@ -8,7 +8,7 @@ template = "404.html"
 tags = ["achievement", "publication"]
 
 [extra]
-category = "Academic Publications"
+achievement_category = "Academic Publications"
 link = "https://www.scitepress.org/Link.aspx?doi=10.5220/0008985901420152"
 home_feed_label = "Publication"
 +++

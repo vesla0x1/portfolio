@@ -7,7 +7,7 @@ template = "404.html"
 tags = ["certification", "achievement"]
 
 [extra]
-category = "Certificates"
+achievement_category = "Certificates"
 link = "/documents/bsc-certificate.pdf"
 lang = 'en'
 home_feed_label = "Certificate"

@@ -3,17 +3,23 @@
 {% block title %}{{ section.title }}{% endblock title %}
 
 {% block article_content %}
-  {% set pages = section.pages | sort(attribute="date") | reverse %}
-    {% set display_page_subtitle = true %}
-    {% if section.extra.categorized %}
-      {% for category, pages in pages | group_by(attribute="extra.category") %}
-        <section>
-        <h1>{{ category }}</h1>
-        {% include "_page_list.html" %}
-        </section>
-      {% endfor %}
-    {% else %}
-      <h1>{{ section.title }}</h1>
-      {% include "_page_list.html" %}
+  {% set display_page_subtitle = true %}
+  {% if section.extra.categorized_by %}
+    {% set term = get_taxonomy_term(kind="tags", term=section.extra.categorized_by) %}
+    {% set pages = term.pages | sort(attribute="date") | reverse %}
+    {% set category_term = "category" %}
+    {% if section.extra.category_term %}
+      {% set category_term = section.extra.category_term %}
     {% endif %}
+    {% for category, pages in pages | group_by(attribute="extra." ~ category_term) %}
+      <section>
+      <h1>{{ category }}</h1>
+      {% include "_page_list.html" %}
+      </section>
+    {% endfor %}
+  {% else %}
+    <h1>{{ section.title }}</h1>
+    {% set pages = section.pages %}
+    {% include "_page_list.html" %}
+  {% endif %}
 {% endblock article_content %}

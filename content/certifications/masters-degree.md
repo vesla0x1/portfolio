@@ -8,7 +8,7 @@ template = "404.html"
 tags = ["achievement", "certification"]
 
 [extra]
-category = "Certificates"
+achievement_category = "Certificates"
 link = "/documents/masters-certificate.pdf"
 home_feed_label = "Certificate"
 +++
