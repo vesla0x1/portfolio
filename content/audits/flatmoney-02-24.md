@@ -9,6 +9,7 @@ tags = ["Audit Report", "achievement", "Sherlock"]
 [extra]
 subtitle = "**Ranked 31/257**"
 achievement_category = "Web3 Achievements"
+achievement_anchor = "achievement"
 platform = "Sherlock"
 audit_link = "https://audits.sherlock.xyz/contests/132"
 report = "https://audits.sherlock.xyz/contests/132/report"

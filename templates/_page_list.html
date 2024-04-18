@@ -5,6 +5,10 @@
     <a 
         {% if page.extra.link %}
         href="{{ page.extra.link }}" target="_blank"
+        {% elif section and section.components and
+           section.components[0] == "achievements" and
+           page.extra.achievement_anchor %}
+        href="{{ page.permalink }}#{{ page.extra.achievement_anchor }}"
         {% else %}
         href="{{ page.permalink }}"
         {% endif %}>
