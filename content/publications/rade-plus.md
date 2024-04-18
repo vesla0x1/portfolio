@@ -8,7 +8,7 @@ template = "404.html"
 tags = ["achievement", "publication"]
 
 [extra]
-category = "Academic Publications"
+achievement_category = "Academic Publications"
 link = "https://www.sciencedirect.com/science/article/pii/S2667096822000210"
 home_feed_label = "Publication"
 +++

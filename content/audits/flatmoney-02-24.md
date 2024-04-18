@@ -1,12 +1,14 @@
 +++
 title = "Flat Money"
 date = "2024-02-20"
-description = "The Flat Money protocol allows people to deposit Rocket Pool ETH (rETH) and mint UNIT, a decentralized delta-neutral flatcoin designed to outpace inflation."
+description = "Found a medium severity issue in my first audit contest, with less than one month working as smart contract security researcher, was rewarded with **$41,11** and placed **31/257** on Sherlock."
 
 [taxonomies]
-tags = ["Audit Report", "Sherlock"]
+tags = ["Audit Report", "achievement", "Sherlock"]
 
 [extra]
+subtitle = "**Ranked 31/257**"
+achievement_category = "Web3 Achievements"
 platform = "Sherlock"
 audit_link = "https://audits.sherlock.xyz/contests/132"
 report = "https://audits.sherlock.xyz/contests/132/report"
@@ -19,7 +21,7 @@ findings = "1M"
 ranking_position = 31
 participants = 257
 ranking_link = "https://twitter.com/sherlockdefi/status/1764374914838954220"
-home_feed_label = "Audit Report"
+home_feed_label = "Audit Contest"
 overview = "The [Flat Money](https://flat.money/) protocol allows people to deposit Rocket Pool ETH (rETH) and mint UNIT, a decentralized delta-neutral flatcoin designed to outpace inflation. Flat Money also offers Leverage Traders the ability to deposit rETH and open rETH leveraged long positions through perpetual futures contracts."
 references = [{name = "Flat Money docs", url = "https://docs.flat.money/"}, {name = "Flat Money site", url="https://flat.money"}, { name = "Contest page on Sherlock", url = "https://audits.sherlock.xyz/contests/132"}, { name = "Official Sherlock's Report", url = "https://audits.sherlock.xyz/contests/132/report" }, { name = "Sherlock's tweet of my classification", url="https://twitter.com/sherlockdefi/status/1764374914838954220"}]
 
@@ -28,6 +30,9 @@ findings_data = [
 ]
 
 +++
+
+## Achievement
+With less than one month working as smart contract security researcher, I managed to find a medium severity issue, in my first audit contest. I was rewarded with **$41,11** and placed **31/257** in Flat Money contest on Sherlock (see [sherlock's tweet](https://twitter.com/sherlockdefi/status/1764374914838954220) with my classification at 31st).
 
 # Medium findings
 ## [M-1] Malicious actors can accumulate a huge amount of internal points (FMP) and inflate their value {#M-1}

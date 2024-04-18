@@ -1,5 +1,5 @@
 +++
-title = "MiM Spell Attack"
+title = "MiM Spell Attack Analysis"
 description = "Analysis of an incident that caused $6,5M loss to Abracadabra Money protocol"
 date = "2024-02-29"
 updated = "2024-03-29"
@@ -13,7 +13,7 @@ math = true
 home_feed_label = "Article"
 +++
 
-## 1. Root cause
+## Root cause
 ### TL;DR
 The root cause of the attack was a precision loss introduced by a rounding error in [`CauldronV4.sol::_repay`](https://github.com/vesla0x1/defi-hacks/blob/master/mim-spell/src/CauldronV4.sol#L396-L407), when [`toElastic`](https://github.com/boringcrypto/BoringSolidity/blob/78f4817d9c0d95fe9c45cd42e307ccd22cf5f4fc/contracts/libraries/BoringRebase.sol#L28-L41) is calculated. [`toElastic`](https://github.com/boringcrypto/BoringSolidity/blob/78f4817d9c0d95fe9c45cd42e307ccd22cf5f4fc/contracts/libraries/BoringRebase.sol#L28-L41) is evaluated as `x = (part * totalBorrow.elastic) / totalBorrow.base` and in order to handle the precision loss caused by the division, it rounds up favoring the protocol. However, when (part * totalBorrow.elastic) < totalBorrow.base, rounding up will cause `toElastic` to be always evaluated to 1, violating the invariant of the exchange rate (`totalBorrow.elastic` / `totalBorrow.base`) before repayments $e$, being approximately the exchange rate after, $e'$.
 
@@ -89,7 +89,7 @@ final      => {elastic: 1, base: 120080183810681886665215049729}
 
 Since the amount of `base` shares of MiM had increased to (almost) infinity, the entire balance of MiM tokens in Degenbox (5.000.047 when the attack happened) was negligible in comparison this amount of `totalBorrow.base`. This made possible the attacker to bypass the health check in [`CauldronV4.sol#L272`](https://github.com/vesla0x1/defi-hacks/blob/master/mim-spell/src/CauldronV4.sol#L272), since the division for [`totalBorrow.base`](https://github.com/vesla0x1/defi-hacks/blob/master/mim-spell/src/CauldronV4.sol#L272C71-L272C88) will always result in zero and the attacker was able to borrow (and withdraw) all MiM tokens in Degenbox for a very low collateral amount, using another account, causing ~$6.5M loss to the protocol.
 
-## 2. Mitigation
+## Mitigation
 As discussed, the root cause of the problem was a rounding error in [`CauldronV4.sol::_repay`](https://github.com/vesla0x1/defi-hacks/blob/master/mim-spell/src/CauldronV4.sol#L401), introduced when [`BoringRebase.sol::toElastic`](https://github.com/boringcrypto/BoringSolidity/blob/78f4817d9c0d95fe9c45cd42e307ccd22cf5f4fc/contracts/libraries/BoringRebase.sol#L36) is calculated:
 
 $$
@@ -115,3 +115,6 @@ This rounding error occurs if (`part` * `totalBorrow.elastic`) < `totalBorrow.ba
  407:         emit LogRepay(skim ? address(bentoBox) : msg.sender, to, amount, part);
  408:     }
 ```
+
+## Code
+- [branch](https://github.com/vesla0x1/defi-hacks/tree/master/mim-spell)

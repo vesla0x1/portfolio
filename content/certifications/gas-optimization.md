@@ -8,7 +8,7 @@ template = "404.html"
 tags = ["certification", "achievement"]
 
 [extra]
-category = "Certificates"
+achievement_category = "Certificates"
 link = "https://www.udemy.com/certificate/UC-64451e08-e85c-4651-8e4d-b1ca4f39acda/"
 home_feed_label = "Certificate"
-+++  
++++
