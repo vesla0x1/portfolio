@@ -16,7 +16,7 @@ home_feed_label = "Coding challenge"
 {{ figure(src="/images/sui-marketplace-overview.png" , caption="") }}
 
 ## Overview
-[Sui Marketplace](https://overmind.xyz/quests/sui-marketplace) is one of the quests available on [Overmind.xyz](https://overmind.xyz). Overmind is an online platform that has the goal of serving an "on-chain resume" and incentivizing web3 learning by promoting competitive challenges (quests). In these challenges, developers should complete tasks, such as implementing smart contract functions and compete for a prize pool, generally in APTOS or SUI tokens. Top performers receive a share of this prize pool as a reward.
+[Sui Marketplace](https://overmind.xyz/quests/sui-marketplace) is one of the quests available on [Overmind.xyz](https://overmind.xyz). Overmind is an online platform that has the goal of serving as an "on-chain resume" and incentivizing web3 learning by promoting competitive challenges (quests). In these challenges, developers should complete tasks, such as implementing smart contract functions and compete for a prize pool, generally in APTOS or SUI tokens. Top performers receive a share of this prize pool as a reward.
 
 The goal of Sui Marketplace was to implement common marketplaces functions (i.e. `create_shop`, `add_item`, `unlist_item` and `purchase_item`) using the **[Move](https://move-language.github.io/move/)** language. This challenge was promoted by the [Sui Foundation](https://sui.io), and rewards were in SUI tokens.
 
