@@ -40,7 +40,7 @@ Even with no prior experience with **Move**, I managed to learn the basics and f
 ## Conclusion
 I had a great time learning Move while participating in this challenge. As a suggestion, they could automate the evaluation process of submissions and make payment processing faster, or at least create a better feedback system after submission.
 
-Besides that, my overall experience with [Overmind.xyz](https://overmind.xyz) was extremely positive. They were very attentive. I highly recommend the platform for anyone interested in trying and learning more about blockchain development. I assure you that you will have a great time learning.
+Nevertheless, my overall experience with [Overmind.xyz](https://overmind.xyz) was extremely positive. They were very attentive, and I really appreciate the idea of an "on-chain resume", besides competing and potentially being rewarded while learning. I highly recommend the platform for anyone interested in trying and learning more about blockchain development. I assure you that you will have a great time learning.
 
 ## References
 - [Github repository](https://github.com/vesla0x1/sui-marketplace/)
