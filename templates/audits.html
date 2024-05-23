@@ -11,7 +11,6 @@
 
 <h1>Audit reports</h1>
 
-{% for audit in section.pages | sort(attribute="date") | reverse %}
 <div class="table-wrapper">
   <table>
     <thead>
@@ -25,29 +24,31 @@
       <td>Date</td>
       </tr>
     </thead>
-    <tr>
-      <td><a href="{{ audit.permalink }}">{{ audit.title }}</a></td>
-      <td>{{ audit.extra.findings }}</td>
-      <td>{{ audit.extra.nsloc }}</td>
-      <td>${{ audit.extra.payment }}</td>
-      <td>{{ audit.extra.protocol_category }}</td>
-      <td><a href="{{ audit.extra.ranking_link }}" target="_blank">#{{ audit.extra.ranking_position }}</a> of {{ audit.extra.participants }} </td> 
-      <td>{{ audit.date | date(format="%h, %y") }}</td>
-    </tr>
+    {% for audit in section.pages | sort(attribute="date") | reverse %}
+      <tr>
+        <td><a href="{{ audit.permalink }}">{{ audit.title }}</a></td>
+        <td>{{ audit.extra.findings }}</td>
+        <td>{{ audit.extra.nsloc }}</td>
+        <td>${{ audit.extra.payment }}</td>
+        <td>{{ audit.extra.protocol_category }}</td>
+        <td><a href="{{ audit.extra.ranking_link }}" target="_blank">{{ audit.extra.ranking_position }}</a></td> 
+        <td>{{ audit.date | date(format="%h, %y") }}</td>
+      </tr>
 
-    {% set_global total_payment = total_payment + audit.extra.payment %}
-    {% set_global total_nsloc = total_nsloc + audit.extra.nsloc %}
-    {% set findings = audit.extra.findings | split(pat=",") %}
-    {% for finding in findings %}
-      {% set ch = finding | reverse | truncate(length=1, end="") %}
-      {% set val = finding | truncate(length=finding | length - 1, end="") | int %}
-      {% if ch == "L" %}
-        {% set_global total_low = total_low + val %}
-      {% elif ch == "M" %}
-        {% set_global total_medium = total_medium + val %}
-      {% elif ch == "H" %}
-        {% set_global total_high = total_high + val %}
-      {% endif %}
+      {% set_global total_payment = total_payment + audit.extra.payment %}
+      {% set_global total_nsloc = total_nsloc + audit.extra.nsloc %}
+      {% set findings = audit.extra.findings | split(pat=",") %}
+      {% for finding in findings %}
+        {% set ch = finding | reverse | truncate(length=1, end="") %}
+        {% set val = finding | truncate(length=finding | length - 1, end="") | int %}
+        {% if ch == "L" %}
+          {% set_global total_low = total_low + val %}
+        {% elif ch == "M" %}
+          {% set_global total_medium = total_medium + val %}
+        {% elif ch == "H" %}
+          {% set_global total_high = total_high + val %}
+        {% endif %}
+      {% endfor %}
     {% endfor %}
 
     <tr>
@@ -71,5 +72,4 @@
     </tr>
   </table>
 </div>
-{% endfor %}
 {% endblock article_content %}

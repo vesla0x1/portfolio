@@ -87,7 +87,7 @@
                 <td>Report</td>
             </thead>
             <tbody>
-                <td><a href="{{ page.extra.ranking_link }}" target="_blank">#{{ page.extra.ranking_position }}</a> of {{ page.extra.participants }}</td>
+                <td><a href="{{ page.extra.ranking_link }}" target="_blank">{{ page.extra.ranking_position }}</a></td>
                 <td>{{ page.extra.start | date(format="%x") }}</td>
                 <td>{{ page.extra.finish | date(format="%x") }}</td>
                 <td>{{ self::elapsed(begin=page.extra.start, end=page.extra.finish) }}</td>
