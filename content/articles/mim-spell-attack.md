@@ -3,7 +3,7 @@ title = "MiM Spell Attack Analysis"
 description = "Analysis of an incident that caused $6,5M loss to Abracadabra Money protocol"
 date = "2024-02-29"
 updated = "2024-03-29"
-draft = false
+draft = true
 
 [taxonomies]
 tags = ["DeFi hacks", "solidity"]

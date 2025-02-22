@@ -1,7 +1,7 @@
 +++
 title = "DeFi Hacks Playground"
 description = "Explore Ethereum hacks using **Solidity** and **Foundry**."
-draft = false
+draft = true
 date = "2024-03-01"
 
 [taxonomies]
