@@ -6,7 +6,7 @@ output_dir = "public"
 compile_sass = true
 minify_html = true
 build_search_index = false
-generate_feed = true
+generate_feeds = true
 taxonomies = [
     { name = "tags" }
 ]
@@ -45,7 +45,7 @@ sections = [
     { name = "tags", path = "/tags" },
 ]
 
-footer_copyright = "© 2024 vesla0x1"
+footer_copyright = "© 2025 vesla0x1"
 not_found_title = "404"
 not_found_error_text = "Not Found"
 not_found_recover_text = "« back to home »"
