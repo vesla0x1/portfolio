@@ -38,10 +38,3 @@ jobs:
             ${{ vars.IPFS_RPC_API_URL }} \
             ${{ vars.IPFS_RPC_API_NAME_KEY }} \
             ${{ vars.OUT_DIR_NAME }}
-
-      - name: Update pinned versions on Pinata
-        run: |
-          node .deploy/pinata_update_pinned.js \
-            ${{ secrets.PINATA_API_KEY }} \
-            ${{ vars.OUT_DIR_NAME }} \
-            ${{ env.cid_to_pin }}
