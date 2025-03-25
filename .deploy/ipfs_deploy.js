@@ -1,5 +1,4 @@
 import { create, globSource } from 'kubo-rpc-client';
-import { appendFileSync } from 'node:fs';
 
 async function IPFSDeploy(ipfsRpcApiKey, ipfsRpcApiUrl, ipfsRpcApiNameKey, outDirName){
   const client = await create({
@@ -12,6 +11,7 @@ async function IPFSDeploy(ipfsRpcApiKey, ipfsRpcApiUrl, ipfsRpcApiNameKey, outDi
   let lastUploadedCID;
   console.log('adding files on IPFS..');
   for await (const file of client.addAll(globSource(".", `${outDirName}/**/*`))) {
+    console.log(`${file.cid.toString()} ${file.path.toString()}`);
     lastUploadedCID = file.cid.toString();
   }
   console.log(`pinned: ${lastUploadedCID}`);
@@ -32,10 +32,6 @@ async function IPFSDeploy(ipfsRpcApiKey, ipfsRpcApiUrl, ipfsRpcApiNameKey, outDi
   console.log('new version available on:');
   console.log(`IPFS address: https://ipfs.io/ipfs/${lastUploadedCID}`);
   console.log(`IPNS address: https://ipfs.io/ipns/${r.name}`);
-
-  console.log(`setting env var $cid_to_pin=${lastUploadedCID}`);
-  const githubEnv = process.env.GITHUB_ENV;
-  appendFileSync(githubEnv, `cid_to_pin=${lastUploadedCID}`);
 }
 
 IPFSDeploy(
